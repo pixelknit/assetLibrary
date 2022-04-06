@@ -1,0 +1,52 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+<h1>My Library</h1>
+    <ul>
+        <li></li>
+    </ul>
+    
+<a href="">Add New Book</a>
+</body>
+</html>
+-->
+
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{{ super() }}
+<!-- My ccs style -->
+<link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
+<!-- Custom Fonts -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-  awesome.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<header class="header">
+    <div class="text-vertical-center">
+        <h1>My Library</h1>
+       <!-- <h3>My portfolio</h3> -->
+                {% if books == []: %}
+                <p>Library is empty.</p>
+                {% endif %}
+            <ul>
+                {% for book in books %}
+                <li>
+                    {{book.book}} - {{book.author}} - {{book.rating}}/10
+                </li>
+                {% endfor %}
+            </ul>
+        <br>
+        <a href="{{ url_for('add') }}" class="btn btn-dark btn-lg">Add Book</a>
+    </div>    
+</header>
+
+{% endblock %}
